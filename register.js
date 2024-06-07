@@ -189,7 +189,7 @@ function displayUserInfo(userId) {
 
         // Create and append the button
         const button = document.createElement('button');
-        button.textContent = 'New Action';
+        button.textContent = 'Time Table';
         button.id = 'permanent_button';
         button.style.padding = '10px 20px';
         button.style.background = 'linear-gradient(80deg, #FFBE0B, #FB5607 50%, #FF006E 50%, #8338EC)';
