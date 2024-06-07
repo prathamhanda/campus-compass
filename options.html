@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options</title>
+    <link rel="stylesheet" href="options.css">
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyANAjogJpTWdO-FslV97Ll4KGFdk2MkyVA",
+            authDomain: "ccsproject-d9fec.firebaseapp.com",
+            databaseURL: "https://ccsproject-d9fec-default-rtdb.firebaseio.com",
+            projectId: "ccsproject-d9fec",
+            storageBucket: "ccsproject-d9fec.appspot.com",
+            messagingSenderId: "786062867145",
+            appId: "1:786062867145:web:4d6eadca5d6190a16a6b18",
+            measurementId: "G-2C1ZX12RR0"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Function to fetch room data from Firebase
+        function fetchRoomData() {
+            console.log('Fetching room data...');
+            return database.ref('roomDatabase').once('value').then((snapshot) => {
+                console.log('Room data fetched:', snapshot.val());
+                return snapshot.val();
+            });
+        }
+
+        // Function to fetch user subjects from Firebase
+        function fetchUserSubjects(userId) {
+            console.log(`Fetching subjects for user: ${userId}`);
+            return database.ref(`users/${userId}/subjects`).once('value').then((snapshot) => {
+                console.log('User subjects fetched:', snapshot.val());
+                return snapshot.val();
+            });
+        }
+
+        // Function to transform subjects data to include building and floor information
+        function transformSubjectsData(subjects, roomData) {
+            console.log('Transforming subjects data...');
+            const updatedSubjects = subjects.map(subject => {
+                const roomNumber = subject.roomNumber;
+                let building = '';
+                let floor = '';
+
+                for (const b in roomData) {
+                    for (const f in roomData[b]) {
+                        if (roomData[b][f].includes(roomNumber)) {
+                            building = b;
+                            floor = f;
+                            break;
+                        }
+                    }
+                    if (building && floor) break;
+                }
+
+                return {
+                    ...subject,
+                    building,
+                    floor
+                };
+            });
+
+            console.log('Transformed subjects:', updatedSubjects);
+            return updatedSubjects;
+        }
+
+        // Function to update user subjects in Firebase
+        function updateUserSubjects(userId, subjects) {
+            console.log(`Updating subjects for user: ${userId}`);
+            return database.ref(`users/${userId}/subjects`).set(subjects).then(() => {
+                console.log('User subjects updated successfully');
+            }).catch((error) => {
+                console.error('Error updating user subjects:', error);
+            });
+        }
+
+        // Function to handle the "Campus Compass" button click event
+        function navigateCampus(userId) {
+            fetchRoomData().then((roomData) => {
+                fetchUserSubjects(userId).then((subjects) => {
+                    const updatedSubjects = transformSubjectsData(subjects, roomData);
+                    updateUserSubjects(userId, updatedSubjects).then(() => {
+                        // Redirect to usercompass.html after updating subjects
+                        window.location.href = 'usercompass.html';
+                    });
+                }).catch((error) => {
+                    console.error('Error fetching user subjects:', error);
+                });
+            }).catch((error) => {
+                console.error('Error fetching room data:', error);
+            });
+        }
+
+        // Example of fetching user ID using Firebase Authentication
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                const userId = user.uid;
+                document.getElementById('campusCompassButton').addEventListener('click', () => {
+                    navigateCampus(userId);
+                });
+            } else {
+                // No user is signed in.
+                console.log('No user is signed in.');
+            }
+        });
+
+        // Function to handle the "Update Timetable" button click event
+        function updateTimetable() {
+            window.location.href = 'timetable.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Options</h1>
+        <button onclick="updateTimetable()">Update Timetable</button>
+        <button id="campusCompassButton">Campus Compass</button>
+    </div>
+</body>
+</html>

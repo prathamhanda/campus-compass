@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Firebase Data Fetch</title>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyANAjogJpTWdO-FslV97Ll4KGFdk2MkyVA",
+      authDomain: "ccsproject-d9fec.firebaseapp.com",
+      databaseURL: "https://ccsproject-d9fec-default-rtdb.firebaseio.com",
+      projectId: "ccsproject-d9fec",
+      storageBucket: "ccsproject-d9fec.appspot.com",
+      messagingSenderId: "786062867145",
+      appId: "1:786062867145:web:4d6eadca5d6190a16a6b18",
+      measurementId: "G-2C1ZX12RR0"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // Function to fetch data from Firebase
+    function fetchData() {
+      return database.ref('roomDatabase').once('value').then((snapshot) => {
+        return snapshot.val();
+      });
+    }
+
+    // Function to transform data into the desired format
+    function transformData(data) {
+      const roomDatabase = {};
+
+      for (const building in data) {
+        roomDatabase[building] = {};
+        for (const floor in data[building]) {
+          roomDatabase[building][floor] = data[building][floor];
+        }
+      }
+
+      return roomDatabase;
+    }
+
+    // Fetch and transform data, then store it in a JavaScript object
+    fetchData().then((data) => {
+      const roomDatabase = transformData(data);
+      console.log(roomDatabase);
+
+      // Example of how to store it in a constant
+      const roomDatabaseConst = JSON.stringify(roomDatabase);
+      console.log(roomDatabaseConst);
+    });
+  </script>
+</head>
+<body>
+  <h1>Firebase Data Fetch Example</h1>
+</body>
+</html>

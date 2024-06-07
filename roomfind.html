@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Locator</title>
+    <link rel="stylesheet" href="roomstyle.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Building Locator</h1>
+        </header>
+        <main>
+            <form id="roomForm">
+                <label for="roomNumber">Enter Room Number:</label>
+                <input type="text" id="roomNumber" name="roomNumber" required>
+                <button type="submit">Find Building</button>
+            </form>
+        </main>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalText"></p>
+            <p id="routeMessage">Press below button to find the route to the building</p>
+            <button id="campusCompassButton">Campus Compass</button>
+        </div>
+    </div>
+    <script src="room.js"></script>
+</body>
+</html>

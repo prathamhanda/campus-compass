@@ -1,0 +1,70 @@
+body {
+    background-image: url('https://www.theplan.it//awardsContest/2019/Education/3194/1_Thapar_Student_Residencies.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 50px;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    width: 80%;
+    max-width: 500px;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.row label {
+    margin-right: 10px;
+    flex: 1;
+    text-align: right;
+}
+.row input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid black; /* Added black border */
+    border-radius: 5px;
+    margin-right: 10px; /* Added space between side-by-side text boxes */
+}
+.plus-btn {
+    width: 40px;
+    height: 30px;
+    padding: 5px 10px; /* Smaller padding with a little gap */
+    border: none;
+    border-radius: 5px;
+    background-color: #008CBA; /* Changed color to blue */
+    color: white;
+    cursor: pointer;
+    margin: 0 auto; /* Center-aligned the button */
+    font-size: large;
+}
+.plus-btn:hover {
+    background-color: #007bb5; /* Darker blue on hover */
+}
+.submit-btn {
+    padding:10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #008CBA; /* Changed color to blue */
+    color: white;
+    cursor: pointer;
+    display: block;
+    margin: 7px auto 0; /* Reduced the margin to half */
+}
+.submit-btn:hover {
+    background-color: #007bb5; /* Darker blue on hover */
+}

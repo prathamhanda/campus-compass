@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Additional Info</title>
+    <link rel="stylesheet" href="additional.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Additional Info</h1>
+        <div class="row">
+            <label for="year">Year:</label>
+            <input type="text" id="year" placeholder="Year">
+        </div>
+        <div class="row">
+            <label for="subgroup">Subgroup:</label>
+            <input type="text" id="subgroup" placeholder="Subgroup">
+        </div>
+        <div id="dynamic-rows">
+            <div class="row">
+                <input type="text" placeholder="Subject Name">
+                <input type="text" placeholder="Room Number">
+            </div>
+        </div>
+        <div class="row">
+            <button class="plus-btn" onclick="addRow()">+</button>
+        </div>
+        <div class="row">
+            <button class="submit-btn" onclick="submitData()">Submit</button>
+        </div>
+    </div>
+    <script src="additional.js"></script>
+</body>
+</html>

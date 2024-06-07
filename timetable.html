@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <link rel="stylesheet" href="timetable.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Timetable</h1>
+        <div id="timetable">
+            <div class="day-row">
+                <label>Monday:</label>
+                <div class="subject-container" id="monday"></div>
+            </div>
+            <div class="day-row">
+                <label>Tuesday:</label>
+                <div class="subject-container" id="tuesday"></div>
+            </div>
+            <div class="day-row">
+                <label>Wednesday:</label>
+                <div class="subject-container" id="wednesday"></div>
+            </div>
+            <div class="day-row">
+                <label>Thursday:</label>
+                <div class="subject-container" id="thursday"></div>
+            </div>
+            <div class="day-row">
+                <label>Friday:</label>
+                <div class="subject-container" id="friday"></div>
+            </div>
+        </div>
+        <button class="submit-btn" onclick="submitTimetable()">Submit</button>
+    </div>
+    <!-- Include the timetable.js script -->
+    <script src="timetable.js"></script>
+</body>
+</html>
