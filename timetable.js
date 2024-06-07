@@ -123,7 +123,7 @@ function submitTimetable() {
         }).then(() => {
             alert('Timetable submitted successfully!');
             // Redirect to the dashboard or home page
-            window.location.href = 'index.html';
+            window.location.href = 'options.html';
         }).catch((error) => {
             console.error('Error submitting timetable:', error);
         });
