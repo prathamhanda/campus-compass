@@ -7,3 +7,7 @@ https://docs.google.com/document/d/1ExBjBQfBLYmcasT4-JYgwfncAh2nDQUAaxCAm-tGtT8/
 Here's the link to the website:
 <br>
 https://prathamhanda.github.io/campuscompass/
+<br>
+Demo Video Link:
+<br>
+https://www.loom.com/share/018ba6608ba04b27b9b52f43748d5040
